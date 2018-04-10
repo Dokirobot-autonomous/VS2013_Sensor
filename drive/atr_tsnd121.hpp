@@ -62,8 +62,10 @@ class AtrTsnd121
 
 public:
 	/***** ここから:パブリック関数 *****/
+	AtrTsnd121(); // コンストラクタ
 	AtrTsnd121(char* server_ip_addr, int ip_port_num); // コンストラクタ
 	~AtrTsnd121(); // デストラクタ
+	void open(char* server_ip_addr, int ip_port_num);
 	void start();
 	void stop();
 	void setParamAccelgyro(int meas_period, int out_ave_num, int save_ave_num);

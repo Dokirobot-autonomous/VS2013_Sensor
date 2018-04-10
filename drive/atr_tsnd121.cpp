@@ -8,6 +8,17 @@
 #include "stdafx.h"
 #include "atr_tsnd121.hpp"
 
+/*******************************************************************************
+* Function name  : AtrTsnd121
+* Function type  : public
+* Input / Output : IP adress, port / non
+* Description    : Constructer
+*******************************************************************************/
+AtrTsnd121::AtrTsnd121()
+{
+
+}
+
 
 /*******************************************************************************
 * Function name  : AtrTsnd121
@@ -16,6 +27,20 @@
 * Description    : Constructer
 *******************************************************************************/
 AtrTsnd121::AtrTsnd121(char* server_ip_addr, int ip_port_num){
+
+	open(server_ip_addr, ip_port_num);
+
+	return; // ê≥èÌèIóπ
+}
+
+
+/*******************************************************************************
+* Function name  : Open
+* Function type  : public
+* Input / Output : IP adress, port / non
+* Description    : Open Atr Sensor
+*******************************************************************************/
+void AtrTsnd121::open(char* server_ip_addr, int ip_port_num){
 
 	// ê⁄ë±èÄîı
 	WSADATA wsad;
@@ -40,7 +65,6 @@ AtrTsnd121::AtrTsnd121(char* server_ip_addr, int ip_port_num){
 
 	return; // ê≥èÌèIóπ
 }
-
 
 
 /*******************************************************************************

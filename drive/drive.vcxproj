@@ -102,6 +102,8 @@
   <ItemGroup>
     <ClInclude Include="atr_tsnd121.hpp" />
     <ClInclude Include="drive.h" />
+    <ClInclude Include="include.h" />
+    <ClInclude Include="settings.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -95,7 +95,9 @@
     <ClCompile Include="bumper_sensor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\drive\sensor_data_getter.h" />
     <ClInclude Include="bumper_sensor.h" />
+    <ClInclude Include="sensor_data_getter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
