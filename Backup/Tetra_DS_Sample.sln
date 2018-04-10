@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bumper_sensor", "bumper_sensor\bumper_sensor.vcproj", "{BFC4C406-19A2-4B7B-898A-758314D3B01A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "drive", "drive\drive.vcproj", "{54E8DD75-D8F6-40F8-8EDB-CD91E112E368}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "usonic_sensor", "usonic_sensor\usonic_sensor.vcproj", "{41C61853-7637-4764-9BEF-1193C18E615C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emergency", "Emergency\Emergency.vcproj", "{EB36E743-74BF-4F56-B60F-9A8F81289335}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LRF", "LRF\LRF.vcproj", "{09D7CFA0-5379-4A9B-AAFF-ED89133A542F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StarGazer", "StarGazer\StarGazer.vcproj", "{B40FF123-E82D-4A60-B336-488F168A90E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PowerModule", "PowerModule\PowerModule.vcproj", "{AE34AA7A-253B-452D-8ECF-43CC011EB7DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFC4C406-19A2-4B7B-898A-758314D3B01A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BFC4C406-19A2-4B7B-898A-758314D3B01A}.Debug|Win32.Build.0 = Debug|Win32
+		{BFC4C406-19A2-4B7B-898A-758314D3B01A}.Release|Win32.ActiveCfg = Release|Win32
+		{BFC4C406-19A2-4B7B-898A-758314D3B01A}.Release|Win32.Build.0 = Release|Win32
+		{54E8DD75-D8F6-40F8-8EDB-CD91E112E368}.Debug|Win32.ActiveCfg = Debug|Win32
+		{54E8DD75-D8F6-40F8-8EDB-CD91E112E368}.Debug|Win32.Build.0 = Debug|Win32
+		{54E8DD75-D8F6-40F8-8EDB-CD91E112E368}.Release|Win32.ActiveCfg = Release|Win32
+		{54E8DD75-D8F6-40F8-8EDB-CD91E112E368}.Release|Win32.Build.0 = Release|Win32
+		{41C61853-7637-4764-9BEF-1193C18E615C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{41C61853-7637-4764-9BEF-1193C18E615C}.Debug|Win32.Build.0 = Debug|Win32
+		{41C61853-7637-4764-9BEF-1193C18E615C}.Release|Win32.ActiveCfg = Release|Win32
+		{41C61853-7637-4764-9BEF-1193C18E615C}.Release|Win32.Build.0 = Release|Win32
+		{EB36E743-74BF-4F56-B60F-9A8F81289335}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB36E743-74BF-4F56-B60F-9A8F81289335}.Debug|Win32.Build.0 = Debug|Win32
+		{EB36E743-74BF-4F56-B60F-9A8F81289335}.Release|Win32.ActiveCfg = Release|Win32
+		{EB36E743-74BF-4F56-B60F-9A8F81289335}.Release|Win32.Build.0 = Release|Win32
+		{09D7CFA0-5379-4A9B-AAFF-ED89133A542F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{09D7CFA0-5379-4A9B-AAFF-ED89133A542F}.Debug|Win32.Build.0 = Debug|Win32
+		{09D7CFA0-5379-4A9B-AAFF-ED89133A542F}.Release|Win32.ActiveCfg = Release|Win32
+		{09D7CFA0-5379-4A9B-AAFF-ED89133A542F}.Release|Win32.Build.0 = Release|Win32
+		{B40FF123-E82D-4A60-B336-488F168A90E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B40FF123-E82D-4A60-B336-488F168A90E6}.Debug|Win32.Build.0 = Debug|Win32
+		{B40FF123-E82D-4A60-B336-488F168A90E6}.Release|Win32.ActiveCfg = Release|Win32
+		{B40FF123-E82D-4A60-B336-488F168A90E6}.Release|Win32.Build.0 = Release|Win32
+		{AE34AA7A-253B-452D-8ECF-43CC011EB7DE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AE34AA7A-253B-452D-8ECF-43CC011EB7DE}.Debug|Win32.Build.0 = Debug|Win32
+		{AE34AA7A-253B-452D-8ECF-43CC011EB7DE}.Release|Win32.ActiveCfg = Release|Win32
+		{AE34AA7A-253B-452D-8ECF-43CC011EB7DE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

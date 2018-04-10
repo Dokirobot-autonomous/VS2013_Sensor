@@ -1,0 +1,34 @@
+﻿2015/05/23 2:31:56 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\drive\drive.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../DSSMP_INFO/inc /I../packages/OpenCV.2.4.8/build/native/include /I"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF\urg\c" /I"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF\urg\cpp" /IC:\boost_1_57_0 /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt drive.cpp
+         drive.cpp
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\packages\opencv.2.4.8\build\native\include\opencv2\legacy\compat.hpp : warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(126): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : 'fopen' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(128): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : 'fscanf' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(180): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\time.inl(112) : 'localtime' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(182): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(187): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(207): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : 'sprintf' の宣言を確認してください。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(218): warning C4244: '+=' : 'double' から 'float' への変換です。データが失われる可能性があります。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(219): warning C4244: '+=' : 'double' から 'float' への変換です。データが失われる可能性があります。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(220): warning C4244: '+=' : 'double' から 'float' への変換です。データが失われる可能性があります。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(250): warning C4244: '=' : 'double' から 'float' への変換です。データが失われる可能性があります。
+     1>c:\users\admin\documents\tetra-ds\tetra-ds_lrf_localization\drive\drive.cpp(266): warning C4305: '初期化中' : 'double' から 'float' へ切り詰めます。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\Debug\drive.exe" /INCREMENTAL /NOLOGO /LIBPATH:../DSSMP_INFO/lib /LIBPATH:C:\opencv243\lib /LIBPATH:"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF\urg\lib" /LIBPATH:C:\boost_1_57_0\libs /LIBPATH:C:\boost_1_57_0\bin.v2\libs /LIBPATH:C:\boost_1_57_0\stage\lib ws2_32.lib libdsphal.lib opencv_core243d.lib opencv_imgproc243d.lib opencv_highgui243d.lib opencv_objdetect243d.lib setupapi.lib urg.lib urg_cpp.lib opencv_calib3d243d.lib opencv_flann243d.lib opencv_legacy243d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\Debug\drive.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\Debug\drive.lib" /MACHINE:X86 /SAFESEH Debug\drive.obj
+         Debug\ICPal2.obj
+         Debug\serial.obj
+     1>drive.obj : warning LNK4075: /EDITANDCONTINUE は /SAFESEH の指定によって無視されます。
+         drive.vcxproj -> C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\Debug\drive.exe
+     1>プロジェクト "C:\Users\admin\Documents\TETRA-DS\TETRA-DS_LRF_Localization\drive\drive.vcxproj" (Build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:07.28
