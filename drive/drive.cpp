@@ -38,8 +38,8 @@ int main()
 		sdg.waitUpdateTime(start);
 		step++;
 	}
-
 	sdg.finalize();
+
 
 	return 0;
 }

@@ -66,13 +66,16 @@ public:
 	AtrTsnd121(char* server_ip_addr, int ip_port_num); // コンストラクタ
 	~AtrTsnd121(); // デストラクタ
 	void open(char* server_ip_addr, int ip_port_num);
+	void initialize();
 	void start();
 	void stop();
+	void finalize();
 	void setParamAccelgyro(int meas_period, int out_ave_num, int save_ave_num);
 	void setParamGeomagnetic(int meas_period, int out_ave_num, int save_ave_num);
 	void setParamPressure(int meas_period, int out_ave_num, int save_ave_num);
 	void setParamBattery(bool out_battery_, bool save_battery_);
 	int update();				// [返り値] 0:ags, 1:geo, 2:pres, 3:batt
+	void update(bool get_accelgyro, bool get_geomagnetic, bool get_pressure, bool get_battery);
 	void waitRecv();
 	void geoCalibration();
 	std::vector<double> getAccelation();

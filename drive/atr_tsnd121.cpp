@@ -68,16 +68,32 @@ void AtrTsnd121::open(char* server_ip_addr, int ip_port_num){
 
 
 /*******************************************************************************
+* Function name  : Open
+* Function type  : public
+* Input / Output : IP adress, port / non
+* Description    : Open Atr Sensor
+*******************************************************************************/
+void AtrTsnd121::initialize(){
+	// メモリの初期化
+	sprintf_s(sendbuf, "clearmem\n");
+	send(dst_socket, sendbuf, strlen(sendbuf), 0);
+	waitOK();
+	// 設定値の初期化
+	sprintf_s(sendbuf, "allinit\n");
+	send(dst_socket, sendbuf, strlen(sendbuf), 0);
+	waitOK();
+	return; // 正常終了
+}
+
+
+/*******************************************************************************
 * Function name  : ~AtrTsnd121
 * Function type  : public
 * Input / Output : non / non
 * Description    : Destructer
 *******************************************************************************/
 AtrTsnd121::~AtrTsnd121(){
-	// ソケットのクローズと後始末
-	WSASendDisconnect(dst_socket, NULL);
-	closesocket(dst_socket);
-	WSACleanup();
+	//finalize();
 	return;
 }
 
@@ -90,14 +106,14 @@ AtrTsnd121::~AtrTsnd121(){
 * Description    : start measurement
 *******************************************************************************/
 void AtrTsnd121::start(){
-	sprintf_s(sendbuf, "start\n");
+	sprintf_s(sendbuf, "start\n");	// startだと、errorが生じるためsensを使用
 	send(dst_socket, sendbuf, strlen(sendbuf), 0);
 	waitRecv();
-	memset(recvbuf, 0, sizeof(recvbuf));
-	recv(dst_socket, recvbuf, 1024, 0);
-	waitRecv();
-	memset(recvbuf, 0, sizeof(recvbuf));
-	recv(dst_socket, recvbuf, 1024, 0);
+	//memset(recvbuf, 0, sizeof(recvbuf));
+	//recv(dst_socket, recvbuf, 1024, 0);
+	//waitRecv();
+	//memset(recvbuf, 0, sizeof(recvbuf));
+	//recv(dst_socket, recvbuf, 1024, 0);
 
 
 	//if (checkRecvQueue()) {
@@ -124,13 +140,27 @@ void AtrTsnd121::stop(){
 	sprintf_s(sendbuf, "stop\n");
 	send(dst_socket, sendbuf, strlen(sendbuf), 0);
 	waitOK();
-	if (checkRecvQueue()) {
-		memset(recvbuf, 0, sizeof(recvbuf));
-		recv(dst_socket, recvbuf, 1024, 0);
-	}
+	//if (checkRecvQueue()) {
+	//	memset(recvbuf, 0, sizeof(recvbuf));
+	//	recv(dst_socket, recvbuf, 1024, 0);
+	//}
 	return;
 };
 
+
+/*******************************************************************************
+* Function name  : finalize
+* Function type  : public
+* Input / Output : non / non
+* Description    : finalize sensor
+*******************************************************************************/
+void AtrTsnd121::finalize(){
+	// ソケットのクローズと後始末
+	WSASendDisconnect(dst_socket, NULL);
+	closesocket(dst_socket);
+	WSACleanup();
+	return;
+};
 
 
 /*******************************************************************************
@@ -395,6 +425,63 @@ int AtrTsnd121::update(){
 	}
 	else{
 		return -1;
+	}
+};
+
+
+
+/*******************************************************************************
+* Function name  : update
+* Function type  : public
+* Input / Output : non / 0: 加速度・ジャイロ, 1: 地磁気, 2: 気圧, 3: バッテリー, -1: 更新なし
+* Description    : update Accelation and Gyro infomation
+*******************************************************************************/
+void AtrTsnd121::update(bool get_accelgyro, bool get_geomagnetic, bool get_pressure, bool get_battery){
+	/* 更新データがない場合、-1を返す */
+	if (checkRecvQueue() == false) return;
+	
+	while (true){
+		memset(recvbuf, 0, sizeof(recvbuf));
+		recv(dst_socket, recvbuf, 1024, 0);
+
+		/* データ名の取得 */
+		std::istringstream istr(unicode2str((WCHAR*)recvbuf));
+		std::string data_name;
+		std::getline(istr, data_name, ',');
+
+
+			/* データごとに場合分け */
+		if (data_name == "ags"){
+			if (get_accelgyro){
+				char c;
+				istr >> time_accelgyro >> c >> accelation[0] >> c >> accelation[1] >> c >> accelation[2] >> c >> gyro[0] >> c >> gyro[1] >> c >> gyro[2];
+				get_accelgyro = false;
+			}
+		}
+		else if (data_name == "geo"){
+			if (get_geomagnetic){
+				char c;
+				istr >> time_geomagnetic >> c >> geomagnetic[0] >> c >> geomagnetic[1] >> c >> geomagnetic[2];
+				get_geomagnetic = false;
+			}
+		}
+		else if (data_name == "pres"){
+			if (get_pressure){
+				char c;
+				istr >> time_pressure >> c >> pressure[0] >> c >> pressure[1] >> c >> pressure[2];
+				get_pressure = false;
+			}
+		}
+		else if (data_name == "batt"){
+			if (get_battery){
+				char c;
+				istr >> time_battery >> c >> battery[0] >> c >> battery[1];
+				get_battery = false;
+			}
+		}
+		if (!get_accelgyro && !get_geomagnetic &&!get_pressure&&!get_battery){
+			break;
+		}
 	}
 };
 

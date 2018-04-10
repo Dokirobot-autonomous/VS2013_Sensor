@@ -306,10 +306,10 @@ public:
 
 	void finalize()
 	{
-#if GET_ACCELATION || GET_GEOMAGNETIC || GET_GYRO
+#if GET_ATR
 		atr.stop();
+		atr.finalize();
 #endif
-
 #if GET_GPS
 		sp_gps.end(); // GPSへの接続を閉じる
 #endif
@@ -329,7 +329,9 @@ public:
 	void initialize()
 	{
 		try{
-			// ロボットにアクセス
+
+			// ロボットにアクセス、オドメトリ初期化
+#if GET_ODOMETRY
 			if (!winsock2_open()){
 				std::string str = "No Valid Robot!";
 				throw str;
@@ -337,7 +339,6 @@ public:
 			std::cout << "Complete Robot Initialization! " << std::endl;
 
 			/********** オドメトリの初期化 **********/
-#if GET_ODOMETRY
 			int ret; // 接続，取得確認用
 			ret = get_odometry_value(&odo_ini); // (0,0,0)を初期位置とする
 			if (!ret){
@@ -404,13 +405,15 @@ public:
 			std::cout << "Complete OmniCamera Initialization! " << std::endl;
 #endif
 			/********** ATRセンサの初期化 **********/
-#if GET_ACCELATION || GET_GEOMAGNETIC ||GET_GYRO
+#if GET_ATR
 			atr.open("127.0.0.1", 10000);
-			atr.setParamAccelgyro(UPDATE_TIME / 10, 10, 0);
-			atr.setParamGeomagnetic(UPDATE_TIME / 10, 10, 0);
-			atr.setParamPressure(0, 0, 0);
-			atr.setParamBattery(0, 0);
+			//atr.initialize();
+			//atr.setParamAccelgyro(UPDATE_TIME / 10, 10, 0);
+			//atr.setParamGeomagnetic(UPDATE_TIME / 10, 10, 0);
+			//atr.setParamPressure(0, 0, 0);
+			//atr.setParamBattery(0, 0);
 			//atr.geoCalibration();
+			atr.start();
 			std::cout << "Complete ATR Initialization! " << std::endl;
 #endif
 		}
@@ -448,43 +451,8 @@ public:
 		cap >> img;
 #endif
 		/* ATRセンサ */
-#if GET_ACCELATION || GET_GEOMAGNETIC || GET_GYRO
-		atr.update();
-		// 加速度の書き込み */
-		if (get_accelation)
-		{
-			sprintf_s(filename, "output/accelation/accelation_no%d_%dth.csv", NO, step);
-			std::ofstream ofs_acc(filename, std::ios_base::out);
-			if (ofs_acc.fail())
-			{
-				writeError(filename, false);
-				end = 'e';
-				break;
-			}
-			ofs_acc << atr.getAccelation()[0] << "," << atr.getAccelation()[1] << "," << atr.getAccelation()[2] << std::endl;
-		}
-		/* ジャイロの書き込み */
-		if (get_gyro){
-			sprintf_s(filename, "output/gyro/gyro_no%d_%dth.csv", NO, step);
-			std::ofstream ofs_gyr(filename, std::ios_base::out);
-			if (ofs_gyr.fail())
-			{
-				writeError(filename, false);
-				break;
-			}
-			ofs_gyr << atr.getGyro()[0] << "," << atr.getGyro()[1] << "," << atr.getGyro()[2] << std::endl;
-		}
-		// 地磁気の書き込み
-		if (get_geomagnetic){
-			sprintf_s(filename, "output/geomagnetic/geomagnetic_no%d_%dth.csv", NO, step);
-			std::ofstream ofs_geo(filename, std::ios_base::out);
-			if (ofs_geo.fail())
-			{
-				writeError(filename, false);
-				break;
-			}
-			ofs_geo << atr.getGeomagnetic()[0] << "," << atr.getGeomagnetic()[1] << "," << atr.getGeomagnetic()[2] << std::endl;
-		}
+#if GET_ATR
+		atr.update(GET_ATR_ACCELGYRO, GET_ATR_GEOMAGNETIC, GET_ATR_PRESSURE, GET_ATR_BATTERY);
 #endif
 		/* GPS計測 */
 #if GET_GPS
@@ -570,43 +538,25 @@ public:
 			cv::imwrite(filename, img);
 #endif
 			/* ATRセンサ */
-#if GET_ACCELATION || GET_GEOMAGNETIC || GET_GYRO
-			atr.update();
+#if GET_ATR
 			// 加速度の書き込み */
-			if (get_accelation)
-			{
-				sprintf_s(filename, "output/accelation/accelation_no%d_%dth.csv", NO, step);
-				std::ofstream ofs_acc(filename, std::ios_base::out);
-				if (ofs_acc.fail())
-				{
-					writeError(filename, false);
-					end = 'e';
-					break;
-				}
-				ofs_acc << atr.getAccelation()[0] << "," << atr.getAccelation()[1] << "," << atr.getAccelation()[2] << std::endl;
-			}
+			sprintf_s(filename, "output/accelation/accelation_no%d_%dth.csv", NO, step);
+			std::ofstream ofs_acc(filename, std::ios_base::out);
+			if (ofs_acc.fail())
+				throw filename;
+			ofs_acc << atr.getAccelation()[0] << "," << atr.getAccelation()[1] << "," << atr.getAccelation()[2] << std::endl;
 			/* ジャイロの書き込み */
-			if (get_gyro){
-				sprintf_s(filename, "output/gyro/gyro_no%d_%dth.csv", NO, step);
-				std::ofstream ofs_gyr(filename, std::ios_base::out);
-				if (ofs_gyr.fail())
-				{
-					writeError(filename, false);
-					break;
-				}
-				ofs_gyr << atr.getGyro()[0] << "," << atr.getGyro()[1] << "," << atr.getGyro()[2] << std::endl;
-			}
+			sprintf_s(filename, "output/gyro/gyro_no%d_%dth.csv", NO, step);
+			std::ofstream ofs_gyr(filename, std::ios_base::out);
+			if (ofs_gyr.fail())
+				throw filename;
+			ofs_gyr << atr.getGyro()[0] << "," << atr.getGyro()[1] << "," << atr.getGyro()[2] << std::endl;
 			// 地磁気の書き込み
-			if (get_geomagnetic){
-				sprintf_s(filename, "output/geomagnetic/geomagnetic_no%d_%dth.csv", NO, step);
-				std::ofstream ofs_geo(filename, std::ios_base::out);
-				if (ofs_geo.fail())
-				{
-					writeError(filename, false);
-					break;
-				}
-				ofs_geo << atr.getGeomagnetic()[0] << "," << atr.getGeomagnetic()[1] << "," << atr.getGeomagnetic()[2] << std::endl;
-			}
+			sprintf_s(filename, "output/geomagnetic/geomagnetic_no%d_%dth.csv", NO, step);
+			std::ofstream ofs_geo(filename, std::ios_base::out);
+			if (ofs_geo.fail())
+				throw filename;
+			ofs_geo << atr.getGeomagnetic()[0] << "," << atr.getGeomagnetic()[1] << "," << atr.getGeomagnetic()[2] << std::endl;
 #endif
 			/* GPS計測 */
 #if GET_GPS

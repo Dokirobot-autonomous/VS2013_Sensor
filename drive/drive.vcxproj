@@ -82,7 +82,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../DSSMP_INFO/inc;../packages/OpenCV.2.4.8/build/native/include;../urg/c;../urg/cpp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../DSSMP_INFO/inc;../packages/OpenCV.2.4.8/build/native/include;../urg/c;../urg/cpp;../include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
